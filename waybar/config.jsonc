@@ -1,0 +1,90 @@
+{
+    "layer": "top",
+    "position": "right",
+    "width": 60,
+    "margin-top": 160,
+    "margin-bottom": 160,
+    "margin-right": 0,
+    "spacing": 0,
+
+    "modules-left": [
+        "niri/workspaces"
+    ],
+    "modules-center": [
+        "custom/music"
+    ],
+    "modules-right": [
+        "custom/power",
+        "pulseaudio",
+        "backlight",
+        "clock",
+        "network",
+        "battery"
+    ],
+
+    "niri/workspaces": {
+        "format": "{icon}",
+        "on-click": "activate"
+    },
+
+    "pulseaudio": {
+        "format": "{volume}",
+        "format-muted": "󰝟",
+        "tooltip-format": "Volume: {volume}%",
+        "on-click": "pavucontrol"
+    },
+
+    "backlight": {
+        "format": "{percent}",
+        "tooltip-format": "Brightness: {percent}%"
+    },
+
+    "custom/power": {
+        "format": " ",
+        "tooltip-format": "Double-click: Power Off\nRight-click: Reboot",
+        "on-double-click": "systemctl poweroff",
+        "on-click-right": "reboot"
+    },
+
+    "custom/music": {
+        "format": "  {}",
+        "exec": "timeout 1s mpc -h 127.0.0.1 current -f '%artist% - %title%' 2>/dev/null",
+        "interval": 1,
+        "rotate": 270,
+        "tooltip": false,
+        "on-click": "mpc -h 127.0.0.1 toggle",
+        "on-click-right": "ymuse",
+        "on-scroll-down": "mpc -h 127.0.0.1 next",
+        "on-scroll-up": "mpc -h 127.0.0.1 prev",
+        "max-length": 38,
+        "ellipsis": "..."
+    },
+
+    "network": {
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-linked": "󰈀",
+        "format-disconnected": "󰤮",
+        "tooltip-format": "Сеть: {essid}\nIP: {ipaddr}\nСигнал: {signalStrength}%",
+        "on-click": "kitty -e nmtui"
+    },
+
+    "battery": {
+        "bat": "BAT0",       // Укажи точное имя твоей батареи (например, BAT0 или BAT1)
+        "adapter": "AC",     // Имя адаптера питания из вывода команды выше (AC, ADP0, ADP1)
+        "interval": 5,
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": " {capacity}%",
+        "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
+    },
+
+    "clock": {
+        "format": "{:%H\n%M}",
+        "tooltip-format": "<big>{:%d %B %Y}</big>\n<tt><small>{calendar}</small></tt>"
+    }
+}
