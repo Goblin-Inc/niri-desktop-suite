@@ -1,32 +1,34 @@
 # Niri Wayland Desktop Suite
 
-Набор кастомных скриптов, фоновых демонов (Python/Bash) и конфигураций для скроллингового Wayland-композитора **Niri**, панели **Waybar**, лаунчера **Fuzzel** и терминала **Kitty**.
+> 🌐 **Language:** **English** | [Русский (README_Ru.md)](README_Ru.md)
 
-## ✨ Компоненты и возможности
+A collection of custom scripts, background IPC daemons (Python/Bash), and configurations for the **Niri** scrollable-tiling Wayland compositor, **Waybar**, **Fuzzel** launcher, and **Kitty** terminal.
 
-### 🧠 Фоновые демоны и IPC-скрипты (`niri/bin/`)
-- **`niri-session.py`** — менеджер сессий для Niri: сохраняет список открытых приложений, их `workspace_id` и состояние `is_floating` через JSON IPC (`niri msg -j windows`) и автоматически восстанавливает сессию при старте.
-- **`niri-power-sync.py`** — фоновый демон синхронизации питания: отслеживает переключение между сетью (AC) и батареей, автоматически переключая профиль `powerprofilesctl` (`balanced` / `power-saver`), яркость экрана (`brightnessctl`) и отправляя системные уведомления.
+## ✨ Components & Features
 
-### ⚡ Интерактивные Wayland-апплеты на базе Fuzzel (`niri/bin/`)
-- **`qr-tool.sh`** — захват выбранной области экрана (`grim` + `slurp`), распознавание QR-кода (`zbarimg`) с копированием в буфер обмена (`wl-copy`), а также генерация QR-кода из буфера обмена (`qrencode`).
-- **`wifi-menu.sh`** — сканирование и подключение к Wi-Fi сетям через `nmcli` и `fuzzel` (с поддержкой ввода пароля в режиме `--password`).
-- **`battery-menu.sh`** — отображение заряда/статуса батареи, быстрое переключение профилей энергопотребления (`Power-Saver`, `Balanced`, `Performance`) и яркости экрана.
-- **`media-menu.sh`** — управление медиа-плеером через `playerctl` (пауза, переключение треков, вывод текущего исполнителя).
-- **`volume-menu.sh`** — управление громкостью PipeWire (`wpctl`) и быстрый вызов `pavucontrol`.
-- **`clipmenu.sh`** — история буфера обмена Wayland (`cliphist` + `fuzzel` + `wl-copy`).
-- **`calc-menu.sh`** — быстрый калькулятор (`bc`) с копированием результата в буфер обмена.
-- **`calendar-popup.sh`** — всплывающий календарь в системных уведомлениях с подсветкой текущего дня.
-- **`wallpaper-select.sh`** — выбор и смена обоев рабочего стола (`swaybg`).
-- **`powermenu.sh`** — меню блокировки (`swaylock`), сна, выхода из Niri, перезагрузки и выключения.
+### 🧠 Background Daemons & IPC Scripts (`niri/bin/`)
+- **`niri-session.py`** — session manager for Niri: saves the list of open applications, their `workspace_id`, and `is_floating` state via JSON IPC (`niri msg -j windows`), automatically restoring your session on startup.
+- **`niri-power-sync.py`** — background power-state daemon: monitors transitions between AC power and battery, automatically switching `powerprofilesctl` profiles (`balanced` / `power-saver`), screen brightness (`brightnessctl`), and sending desktop notifications.
 
-### 🎨 Конфигурации окружения
-- **`niri/`** — настройки композитора (`config.kdl`) и скрипт автозапуска (`autostart.sh`).
-- **`waybar/`** — вертикальная боковая панель (`config.jsonc`, `style.css`) с интеграцией воркспейсов Niri, MPD-музыки и системных индикаторов.
-- **`fuzzel/`** — конфигурация и цветовая схема лаунчера (`fuzzel.ini` в палитре Catppuccin Mocha).
-- **`kitty/`** — настройки терминала (`kitty.conf`).
+### ⚡ Interactive Fuzzel-Based Wayland Applets (`niri/bin/`)
+- **`qr-tool.sh`** — captures a selected screen region (`grim` + `slurp`), decodes QR codes (`zbarimg`) into the clipboard (`wl-copy`), or generates a QR code from the current clipboard (`qrencode`).
+- **`wifi-menu.sh`** — scans and connects to Wi-Fi networks using `nmcli` and `fuzzel` (including `--password` prompt support).
+- **`battery-menu.sh`** — displays battery charge/status and provides quick switching between power profiles (`Power-Saver`, `Balanced`, `Performance`) and screen brightness levels.
+- **`media-menu.sh`** — controls active media players via `playerctl` (play/pause, track skipping, current artist/title display).
+- **`volume-menu.sh`** — manages PipeWire audio volume (`wpctl`) with quick access to `pavucontrol`.
+- **`clipmenu.sh`** — Wayland clipboard history manager (`cliphist` + `fuzzel` + `wl-copy`).
+- **`calc-menu.sh`** — interactive Fuzzel calculator (`bc`) that copies results directly to the clipboard.
+- **`calendar-popup.sh`** — desktop notification calendar popup highlighting the current day.
+- **`wallpaper-select.sh`** — interactive wallpaper picker and switcher (`swaybg`).
+- **`powermenu.sh`** — session lock (`swaylock`), suspend, logout from Niri, reboot, and poweroff menu.
 
-## 🚀 Установка
+### 🎨 Environment Configurations
+- **`niri/`** — compositor configuration (`config.kdl`) and startup script (`autostart.sh`).
+- **`waybar/`** — vertical sidebar layout (`config.jsonc`, `style.css`) integrated with Niri workspaces, MPD music status, and system indicators.
+- **`fuzzel/`** — application launcher configuration (`fuzzel.ini` styled with the Catppuccin Mocha palette).
+- **`kitty/`** — terminal emulator configuration (`kitty.conf`).
+
+## 🚀 Installation
 
 ```bash
 cp -r niri waybar fuzzel kitty ~/.config/
