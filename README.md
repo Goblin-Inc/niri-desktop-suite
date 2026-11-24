@@ -34,3 +34,6 @@ A collection of custom scripts, background IPC daemons (Python/Bash), and config
 cp -r niri waybar fuzzel kitty ~/.config/
 chmod +x ~/.config/niri/bin/* ~/.config/niri/autostart.sh
 ```
+
+## 📄 License
+MIT © [Goblin-Inc](https://github.com/Goblin-Inc)
